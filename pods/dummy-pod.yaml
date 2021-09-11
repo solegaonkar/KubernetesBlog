@@ -1,0 +1,17 @@
+# This will spawn a pod that runs the infinite while loop.
+# The base image is Ubuntu, and the container is built out of it.
+# The shell script is fed into it as an argument
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dummy
+  namespace: default
+  labels:
+    env: test
+spec:
+  containers:
+  - name: dummy
+    image: ubuntu
+    args: [/bin/sh, -c,
+            'i=0; while true; do echo "$i: $(date)"; i=$((i+1)); sleep 1000; done']
